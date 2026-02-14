@@ -26,6 +26,9 @@ jobs:
 
       - name: Run tests
         run: npm test
+        env:
+          USER_NAME: ${{ vars.USER_NAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
 
       - name: List all files and folders
         run: ls -R
@@ -34,13 +37,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nodejs-app-artifacts
-          path: ./
+          path: |
+            src/
+            package.json
+            package-lock.json
 
       - name: Use username and password
         run: |
           echo "Username is $USER_NAME"
           echo "Password is $PASSWORD"
         env:
-          USER_NAME: ${{ secrets.USER_NAME }}
+          USER_NAME: ${{ vars.USER_NAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
 
