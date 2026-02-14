@@ -1,8 +1,13 @@
-const user = process.env.USER_NAME;
-const pass = process.env.PASSWORD;
+const username = process.env.USER_NAME;
+const password = process.env.PASSWORD;
 
-if (!user || !pass) {
+if (!username || !password) {
   throw new Error("Missing credentials");
 }
+
+console.log("Credentials received successfully");
+console.log("Username:", username);
+// Never log passwords in real projects
+
 
 
