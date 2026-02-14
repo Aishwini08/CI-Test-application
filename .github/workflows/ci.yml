@@ -27,12 +27,20 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: list all the files and folder in build directory
-        run: ls 
+      - name: List all files and folders
+        run: ls -R
 
-      - name: Upload artifacts check the node js application path 
+      - name: Upload Node.js application artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: nodejs-app-=artifacts
+          name: nodejs-app-artifacts
           path: ./
+
+      - name: Use username and password
+        run: |
+          echo "Username is $USER_NAME"
+          echo "Password is $PASSWORD"
+        env:
+          USER_NAME: ${{ secrets.USER_NAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
 
