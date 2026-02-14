@@ -2,24 +2,22 @@ name: Node.js CI Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
@@ -27,23 +25,12 @@ jobs:
       - name: Run tests
         run: npm test
         env:
-          USER_NAME: ${{ vars.USER_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
 
-      - name: List all files and folders
-        run: ls -R
-
-      - name: Upload Node.js application artifacts
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: nodejs-app-artifacts
-          path: |
-            src/
-            package.json
-            package-lock.json
-
-      - name: Use username and password
-        run: |
-          echo "Username is $USER_NAME"
-          echo "Password is $PASSWORD"
-        
+          path: ./
+ 
