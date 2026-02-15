@@ -1,4 +1,5 @@
 name: Deploying the nodejs application to ec2 instance as runner in aws ap-south-1
+
 on:
   workflow_run:
     workflows: ["Build the CI job for nodejs application"]
@@ -6,28 +7,28 @@ on:
       - completed
 
 jobs:
-  deploy: 
+  deploy:
     name: Deploying the nodejs application to ec2 instance as runner in aws ap-south-1
     runs-on: self-hosted
-    #matrix:
-    #  os: [ubuntu-latest, amazonlinux2]
+
     steps:
-      - name: Update the packages 
+      - name: Update the packages
         run: sudo apt update -y
+
       - name: Install nodejs and npm
         run: sudo apt install nodejs npm -y
-      - name: list all the files and folder in build directory
-        run: ls        
-      - name: download the artifacts from build job 
+
+      - name: List all files and folders
+        run: ls
+
+      - name: Download artifacts from build job
         uses: actions/download-artifact@v4
-        with: 
+        with:
           name: nodejs-app-artifacts
           path: ./nodejs-app-artifacts
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Deployment completed
-<<<<<<< HEAD
         run: echo "Deployment completed successfully"
-=======
-        run: echo "Deployment completed successfully"
->>>>>>> ee581d9 (Cd Test)
+
