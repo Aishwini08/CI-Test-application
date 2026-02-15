@@ -25,11 +25,6 @@ jobs:
 
       - name: Run tests
         run: npm test
-#      - name: Show username
-#       run: |
-#           echo "Username is $USER_NAME"
-#           echo "Password is $PASSWORD"
-       
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
