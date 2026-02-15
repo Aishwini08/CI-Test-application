@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 18.x
 
       - name: Install dependencies
         run: npm install
@@ -28,14 +28,14 @@ jobs:
       - name: Show username
         run: |
             echo "Username is $USER_NAME"
+            echo "Password is set: ${PASSWORD:+yes}"
         env:
           USER_NAME: ${{ vars.USER_NAME }}
-
           PASSWORD: ${{ secrets.PASSWORD }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: nodejs-app-artifacts
-          path: ./
+          path: src/
  
