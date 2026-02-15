@@ -29,9 +29,7 @@ jobs:
         run: |
             echo "Username is $USER_NAME"
             echo "Password is $PASSWORD"
-        env:
-          USER_NAME: ${{ vars.USER_NAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+       
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
