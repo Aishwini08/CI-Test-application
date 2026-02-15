@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+# code from GitHub
+=======
+# code from your local branch
+>>>>>>> your-commit-id
+
+
+
+
+
+
 name: Deploying the nodejs application to ec2 instance as runner in aws ap-south-1
 on:
   workflow_run:
@@ -26,4 +37,8 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Deployment completed
+<<<<<<< HEAD
         run: echo "Deployment completed successfully"
+=======
+        run: echo "Deployment completed successfully"
+>>>>>>> ee581d9 (Cd Test)
